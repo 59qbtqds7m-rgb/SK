@@ -1,0 +1,133 @@
+<style xmlns="http://purl.org/net/xbiblio/csl"
+  class="in-text"
+  version="1.0"
+  demote-non-dropping-particle="sort-only"
+  page-range-format="minimal"
+  default-locale="en-US">
+
+  <info>
+    <title>呉高専（引用順・DOIなし・上付き）</title>
+    <title-short>KureKosen</title-short>
+    <id>http://example.com/styles/kurekosen-citeorder-nodoi-sup-v1</id>
+
+    <link href="http://www.zotero.org/styles/vancouver" rel="template"/>
+    <category citation-format="numeric"/>
+    <category field="medicine"/>
+
+    <author>
+      <name>Patrick O'Brien</name>
+    </author>
+    <contributor>
+      <name>Shinji Kuramoto</name>
+    </contributor>
+
+    <updated>2026-01-13T00:00:00+00:00</updated>
+  </info>
+
+  <!-- 著者 -->
+  <macro name="author">
+    <names variable="author" suffix=". ">
+      <name name-as-sort-order="all"
+            delimiter=", "
+            delimiter-precedes-last="always"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- 編集者 -->
+  <macro name="editor">
+    <names variable="editor" suffix=". ">
+      <label form="verb" suffix=" "/>
+      <name name-as-sort-order="all"
+            delimiter=", "
+            delimiter-precedes-last="always"/>
+    </names>
+  </macro>
+
+  <!-- 出版社 -->
+  <macro name="publisher">
+    <text variable="publisher-place" suffix=", "/>
+    <text variable="publisher" suffix=", "/>
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <!-- 雑誌名 -->
+  <macro name="journal-title">
+    <text variable="container-title"
+          form="short"
+          strip-periods="true"
+          suffix=" "/>
+  </macro>
+
+  <!-- タイトル -->
+  <macro name="title">
+    <text variable="title" prefix=":"/>
+  </macro>
+
+  <!-- DOIを完全に出さない -->
+  <macro name="access">
+    <choose>
+      <if type="webpage post-weblog" match="any">
+        <group delimiter=". ">
+          <group delimiter=": ">
+            <text term="available at"
+                  text-case="capitalize-first"/>
+            <text variable="URL"/>
+          </group>
+          <group delimiter=" ">
+            <text term="accessed"
+                  text-case="capitalize-first"/>
+            <date variable="accessed" form="text"/>
+          </group>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- ★ 本文中引用：上付き＋連続番号まとめ -->
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="(" suffix=")"
+            delimiter=","
+            vertical-align="sup">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <!-- ★ 参考文献：引用順（sortなし） -->
+  <bibliography second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=")"/>
+      <text macro="author"/>
+      <text macro="title" suffix=". "/>
+
+      <choose>
+        <if type="book thesis report" match="any">
+          <text macro="publisher"/>
+        </if>
+        <else>
+          <text macro="journal-title"/>
+          <group delimiter=", ">
+            <group>
+              <text variable="volume"/>
+              <text variable="issue" prefix=","/>
+            </group>
+            <text variable="page"/>
+          </group>
+          <date variable="issued" prefix=", ">
+            <date-part name="year"/>
+          </date>
+        </else>
+      </choose>
+
+      <text macro="access"/>
+    </layout>
+  </bibliography>
+
+</style>
