@@ -86,8 +86,8 @@
     </layout>
   </citation>
 
-  <!-- 参考文献：引用順 -->
-  <bibliography second-field-align="flush">
+  <!-- 参考文献：引用順（Mendeley対応・右寄り防止） -->
+  <bibliography>
     <layout suffix=".">
       <text variable="citation-number" suffix=")"/>
       <text macro="author"/>
