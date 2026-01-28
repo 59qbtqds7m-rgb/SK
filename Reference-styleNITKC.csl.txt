@@ -3,23 +3,16 @@
   version="1.0"
   demote-non-dropping-particle="sort-only"
   page-range-format="minimal"
-  default-locale="en-US">
+  default-locale="ja-JP">
 
   <info>
-    <title>呉高専（引用順・DOIなし・上付き）</title>
+    <title>呉高専（引用順・DOIなし・上付き・右括弧）</title>
     <title-short>KureKosen</title-short>
-    <id>http://example.com/styles/kurekosen-citeorder-nodoi-sup-v1</id>
+    <id>http://example.com/styles/kurekosen-citeorder-nodoi-sup-rightparen</id>
 
     <link href="http://www.zotero.org/styles/vancouver" rel="template"/>
     <category citation-format="numeric"/>
     <category field="medicine"/>
-
-    <author>
-      <name>Patrick O'Brien</name>
-    </author>
-    <contributor>
-      <name>Shinji Kuramoto</name>
-    </contributor>
 
     <updated>2026-01-13T00:00:00+00:00</updated>
   </info>
@@ -70,13 +63,11 @@
       <if type="webpage post-weblog" match="any">
         <group delimiter=". ">
           <group delimiter=": ">
-            <text term="available at"
-                  text-case="capitalize-first"/>
+            <text term="available at"/>
             <text variable="URL"/>
           </group>
           <group delimiter=" ">
-            <text term="accessed"
-                  text-case="capitalize-first"/>
+            <text term="accessed"/>
             <date variable="accessed" form="text"/>
           </group>
         </group>
@@ -84,15 +75,14 @@
     </choose>
   </macro>
 
-  <!-- 本文中引用：片括弧＋上付き＋連番まとめ -->
+  <!-- 本文中引用：上付き・番号＋右括弧 -->
   <citation collapse="citation-number">
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout prefix="［" suffix="］"
-            delimiter=","
-            vertical-align="sup">
+    <layout vertical-align="sup" delimiter=",">
       <text variable="citation-number"/>
+      <text value=")"/>
     </layout>
   </citation>
 
